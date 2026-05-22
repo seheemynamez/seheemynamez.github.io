@@ -11,19 +11,21 @@ GitHub Pages **유저 사이트** — 호스트 루트 `https://seheemynamez.git
 
 ```
 .
-├── index.html                                          호스트 루트 게이트웨이
+├── index.html                                          호스트 루트 게이트웨이 (Google Search Console 메타 포함)
 ├── favicon.svg
 ├── og-image.svg
 ├── robots.txt                                          호스트 루트 sitemap.xml 안내
 ├── sitemap.xml                                         host root + /Brian/<game>/ 목록
 ├── llms.txt                                            LLM 친화 요약
 ├── naver609c7dc6764e26a700f29e4e94de674a.html          네이버 서치어드바이저 인증
+├── googled511cee7148991dc.html                         Google Search Console 파일 인증 (백업)
 └── .nojekyll                                           Jekyll 처리 비활성화
 ```
 
 ## 왜 분리되어 있나
 
 - **네이버 서치어드바이저**가 호스트 단위 등록만 허용 → 호스트 루트(`https://seheemynamez.github.io/`) 에 인증 파일이 있어야 함
+- **Google Search Console** 도 호스트 단위 등록 시 같은 위치의 인증 파일 / 메타 태그 필요
 - GitHub Pages 의 "유저 사이트"는 `USERNAME/USERNAME.github.io` 레포만 호스트 루트에 매핑되므로 별도 레포가 필요
 - 메인 콘텐츠 레포(Brian)는 그대로 두고 호스트 루트만 추가로 운영
 
