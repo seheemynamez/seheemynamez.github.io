@@ -27,5 +27,5 @@
   <text x="100" y="420" font-family="-apple-system, 'SF Pro Display', system-ui, sans-serif" font-size="34" font-weight="600" fill="#b0a8d4">브라우저에서 바로 즐기는 미니게임 모음</text>
   <text x="100" y="470" font-family="-apple-system, 'SF Pro Display', system-ui, sans-serif" font-size="30" font-weight="500" fill="#7d76a0">실시간 멀티플레이 오목 · 클래식 2048 슬라이드 퍼즐</text>
   <!-- 우하단 URL -->
-  <text x="96" y="570" font-family="'SF Mono', Menlo, monospace" font-size="24" font-weight="700" fill="#5a5380">seheemynamez.github.io/Brian</text>
+  <text x="96" y="570" font-family="'SF Mono', Menlo, monospace" font-size="24" font-weight="700" fill="#5a5380">seheemynamez.github.io</text>
 </svg>
