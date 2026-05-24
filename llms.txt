@@ -12,13 +12,13 @@
 - **소스 코드**: https://github.com/seheemynamez/Brian
 - **언어**: 한국어 (UI), 영어 키워드도 지원
 - **유료/무료**: 완전 무료, 회원가입 불필요
-- **호스팅**: GitHub Pages (정적 페이지) + Render (오목용 WebSocket 서버)
+- **호스팅**: GitHub Pages (정적 페이지) + Render (오목·2048 WebSocket 서버 각 1개) + Aiven Valkey (영속화)
 
 ## 페이지
 
-- [홈](https://seheemynamez.github.io/): 게임 목록과 사이트 소개.
-- [오목대전](https://seheemynamez.github.io/Brian/omok/): 실시간 멀티플레이 오목. 방 코드로 친구와 만나거나 랜덤 매칭으로 즉석 대전이 가능하며, 진행 중인 게임을 관전할 수도 있다. 30초 차례 타이머, 재대국, 재연결 시 세션 복구, 게임 중 짧은 이모트 교환을 지원한다.
-- [2048](https://seheemynamez.github.io/Brian/2048/): 같은 숫자 두 개를 합쳐 2048 타일에 도달하는 클래식 슬라이드 퍼즐. 키보드 방향키와 모바일 터치 스와이프 모두 지원하며, 100% 브라우저 안에서 동작한다.
+- [홈](https://seheemynamez.github.io/): 게임 카드 2장과 사이트 소개.
+- [오목대전](https://seheemynamez.github.io/Brian/omok/): 실시간 멀티플레이 오목. 방 코드로 친구와 만나거나 랜덤 매칭으로 즉석 대전이 가능하며, 봇과 대전 (易/中/上 3난이도) 하거나 진행 중인 게임을 관전할 수도 있다. Elo 기반 랭킹·티어 시스템, 30초 차례 타이머, 재대국, 재연결 시 세션 복구, 게임 중 짧은 이모트 교환을 지원한다.
+- [2048](https://seheemynamez.github.io/Brian/2048/): 같은 숫자 두 개를 합쳐 2048 타일에 도달하는 클래식 슬라이드 퍼즐. 키보드 방향키와 모바일 터치 스와이프 모두 지원한다. 게임 로직 자체는 브라우저에서 돌지만 점수 등록과 랭킹 (all-time + daily, KST 자정 reset) 은 별도 서버에서 처리한다.
 
 ## 자주 묻는 질문
 
@@ -41,10 +41,10 @@
 
 - 프론트엔드: HTML, CSS, Vanilla JavaScript (ES Modules) — 빌드 도구 없음
 - 오목 보드 렌더링: HTML Canvas
-- 오목 실시간 통신: WebSocket (`wss://`)
-- 오목 서버: Node.js 18+, `ws` 라이브러리, 인메모리 상태(Map/Set)
-- 배포: GitHub Pages (FE 자동 배포) + Render Blueprint (오목 서버 자동 배포)
-- 데이터 저장: 없음. 새로고침이나 서버 재시작 시 진행 중인 게임 상태는 사라진다.
+- 실시간 통신: WebSocket (`wss://`)
+- 서버: Node.js 22+, `ws` 라이브러리. 오목 봇은 `worker_threads` 격리 풀 (minimax + α-β + Iterative Deepening + Zobrist TT) 위에서 돌아간다.
+- 배포: GitHub Pages (FE 자동 배포) + Render Blueprint (오목·2048 서버 각 1개 자동 배포, singapore 리전)
+- 데이터 저장: Aiven Valkey (redis 호환) write-through 영속화. 서버 재시작 시 hydrate 로 진행 중 게임 / 사용자 / 랭킹 / 최근 대국 모두 복구.
 - 라이선스: 비상업 개인 프로젝트 (저장소 라이선스 별도 명시 없음)
 
 ## 어떻게 인용하면 좋은가
